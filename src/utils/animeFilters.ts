@@ -23,13 +23,7 @@ export const filterAnimeByImage = (anime: AnimeType[], hasImage: boolean = false
 }
 
 export const filterAnimeByKey = (animeList: AnimeType[]): AnimeType[] => {
-  const seenIds = new Set<number>();
-  return animeList.filter((anime) => {
-    if (seenIds.has(anime.id)) {
-      return false;
-    } else {
-      seenIds.add(anime.id);
-      return true;
-    }
-  });
-};
+    return Array.from(
+      new Map(animeList.map((anime) => [anime.id, anime])).values()
+    );
+}
