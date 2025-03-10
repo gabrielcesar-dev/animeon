@@ -9,7 +9,7 @@ import theme from "../constants/theme";
 import { getTodayEndTimeUTC, getTodayStartTimeUTC } from "../utils/getDayTimeUTC";
 import { animeSortByPopularityOnCenter } from "../utils/animeSort";
 import ConfigModal from "./ConfigModal";
-import { IoMdSettings } from "react-icons/io";
+import NavBar from "./NavBar";
 
 const Hero = () => {
   const [rawAnimeList, setRawAnimeList] = useState<AnimeType[]>([]);
@@ -65,20 +65,15 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen w-screen overflow-hidden">
+      <NavBar isSettingsOpen={isSettingsOpen} setIsSettingsOpen={setIsSettingsOpen} iconsSize={35} />
+
       <CardsCarousel animeList={animeList} />
+
       <GridCanvas
         backgroundColor={theme.colors.backgroundColor}
         AccentColor={theme.colors.accentColor}
         animeList={animeList}
       />
-
-      <button 
-          className={`group absolute right-0 top-0 p-0 flex justify-center items-center hover:text-palette-accent-hover z-30 text-gray-600 bg-transparent cursor-pointer
-                      ${isSettingsOpen ? "opacity-0 invisible" : "opacity-100 visible"} transition-all duration-500 ease-in-out hover:rotate-180 hover:duration-700`}
-          onClick={() => setIsSettingsOpen(true)}
-        >
-          <IoMdSettings size={35}/>
-      </button>
       
       <ConfigModal 
         setAnimeList={setAnimeList} 
