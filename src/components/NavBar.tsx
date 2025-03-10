@@ -8,11 +8,14 @@ interface NavBarProps {
 
     setIsSettingsOpen: (value: boolean) => void;
     iconsSize: number;
+    isLoading: boolean;
 }
 
-const NavBar = ({ setIsSettingsOpen, iconsSize }: NavBarProps) => {
+const NavBar = ({ setIsSettingsOpen, iconsSize, isLoading }: NavBarProps) => {
   const [host, ] = useState(window.location.origin);
-  
+
+  if (isLoading) return null;
+
   return (
     <nav className="absolute bottom-1 lg:bottom-full lg:translate-y-full z-20 flex w-full justify-center items-center gap-x-20">
         <a 

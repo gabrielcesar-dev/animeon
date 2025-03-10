@@ -49,8 +49,8 @@ const ConfigModal = ({ setAnimeList, rawAnimeList, onClose, isOpen, initFilter, 
 
     useEffect(() => {
         if (initFilter && setInitFilter) {
-            applyFilters();
             setInitFilter(false);
+            applyFilters();
         }
     },[applyFilters, initFilter, setInitFilter]);
 

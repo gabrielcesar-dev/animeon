@@ -111,6 +111,7 @@ const GridCanvas = ({ backgroundColor, AccentColor, animeList }: GridCanvasProps
                 prevOffset.current += -delta;
             },
         });
+        
         return () => {
             observer.kill();
             loop.kill();
