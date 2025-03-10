@@ -1,11 +1,14 @@
-@import url("https://fonts.cdnfonts.com/css/general-sans");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 @import "tailwindcss";
 
+@font-face {
+    font-family: 'Bigger';
+    src: url('/fonts/Bigger-Display.woff2') format('woff2');
+}
+
 @theme {
     /* Font Family */
-    --font-general: 'general', sans-serif;
     --font-poppins: 'Poppins', sans-serif;
 
     /* colors */
