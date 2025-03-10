@@ -5,21 +5,21 @@ interface DayCardProps {
 }
 
 const DayCard = ({ time }: DayCardProps) => {
-    const [userLanguege, ] = useState<string>(() => {
+    const [userLanguage, ] = useState<string>(() => {
         return navigator.language;
     });
 
     const date = new Date(time * 1000);
-    const weekDay = date.toLocaleDateString(userLanguege, {
-    weekday: 'long',
+    const weekDay = date.toLocaleDateString(userLanguage, {
+        weekday: 'long',
     });
 
 
-    const dateFormatted = date.toLocaleDateString(userLanguege, {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-    timeZoneName: 'short',
+    const dateFormatted = date.toLocaleDateString(userLanguage, {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        timeZoneName: 'short',
     });
 
   return (
