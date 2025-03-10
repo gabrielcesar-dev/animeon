@@ -20,6 +20,25 @@ const Card = ({ idMal, isCenter, airingAt, popularity, format, isAdult, ...props
         }
         return animeByTitleURL;
     });
+    const [userLanguage, ] = useState<string>(() => {
+        return navigator.language;
+    });
+    const date = new Date(airingAt * 1000);
+    const airingAtFormatted = date.toLocaleTimeString(userLanguage, {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+    });
+    const airingAtDate = date.toLocaleDateString(userLanguage, {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        timeZoneName: 'short',
+    });
+
     return (
         <div
             data-popularity={popularity}
@@ -42,6 +61,16 @@ const Card = ({ idMal, isCenter, airingAt, popularity, format, isAdult, ...props
 
             <div className="bg-slate-950">
                 <p className="text-white text-sm text-center font-poppins py-0 px-1 truncate" >{props.title}</p>
+            </div>
+
+            <div className="absolute right-4 bottom-8 rounded-md bg-palette-accent px-2 py-auto">
+                <time 
+                    className="font-medium text-sm font-poppins text-white"
+                    dateTime={airingAtDate}
+                    title={airingAtDate}
+                >
+                    {airingAtFormatted}
+                </time>
             </div>
 
             {isCenter && (
