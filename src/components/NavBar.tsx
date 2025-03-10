@@ -1,5 +1,5 @@
-import { FaGithub } from 'react-icons/fa'
-import { IoMdSettings } from 'react-icons/io'
+import { FaGithub } from 'react-icons/fa';
+import { IoMdSettings } from 'react-icons/io';
 
 
 interface NavBarProps {
@@ -27,7 +27,7 @@ const NavBar = ({ isSettingsOpen, setIsSettingsOpen, iconsSize }: NavBarProps) =
         <IoMdSettings size={iconsSize}/>
         </button>
     </nav>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
