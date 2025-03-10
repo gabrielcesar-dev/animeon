@@ -16,5 +16,11 @@ interface HorizontalLoopOptions {
 declare function horizontalLoop(
   items: ItemsType,
   config?: HorizontalLoopOptions
-): gsap.Timeline;
+): gsap.Timeline & {
+  next(vars?: gsap.TweenVars): gsap.core.Tween;
+  previous(vars?: gsap.TweenVars): gsap.core.Tween;
+  toIndex(index: number, vars?: gsap.TweenVars): gsap.core.Tween;
+  current(): number;
+};
+
 export default horizontalLoop;
