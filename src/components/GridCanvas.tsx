@@ -106,7 +106,7 @@ const GridCanvas = ({ backgroundColor, AccentColor, animeList }: GridCanvasProps
                 loop.timeScale(-delta);
                 slow.invalidate().restart();
 
-                const offset = (prevOffset.current + -(delta)) % 30;
+                const offset = (prevOffset.current + -(delta * (1.2))) % 30;
                 drawGrid(offset);
                 prevOffset.current += -delta;
             },
