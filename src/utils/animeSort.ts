@@ -1,19 +1,25 @@
 import { AnimeType } from "../@types/AnimeType";
 
 export const animeSortByPopularityOnCenter = (anime: AnimeType[]): AnimeType[] => {
-  let left = 0;
-  let right = anime.length - 1;
-
-  const sorted = [...anime].sort((a, b) => a.popularity - b.popularity);
+  const sorted = [...anime].sort((a, b) => b.popularity - a.popularity);
 
   const sortedAnime: AnimeType[] = Array(sorted.length);
 
-  for (let i = 0; i < sorted.length; i++) {
-    if (i % 2 === 0) {
-      sortedAnime[left++] = { ...sorted[i] };
+  const centerIndex = Math.floor((sorted.length - 1) / 2);
+
+  let rightPointer = centerIndex;
+  let leftPointer = centerIndex - 1;
+
+  sortedAnime[centerIndex] = { ...sorted[0] };
+
+  for (let i = 1; i < sorted.length; i++) {
+    if (i % 2 !== 0) {
+      sortedAnime[++rightPointer] = { ...sorted[i] };
     } else {
-      sortedAnime[right--] = { ...sorted[i] };
+      sortedAnime[leftPointer--] = { ...sorted[i] };
     }
   }
+
   return sortedAnime;
 };
+
