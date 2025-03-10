@@ -10,6 +10,10 @@ import { getTodayEndTimeUTC, getTodayStartTimeUTC } from "../utils/getDayTimeUTC
 import { animeSortByPopularityOnCenter } from "../utils/animeSort";
 import ConfigModal from "./ConfigModal";
 import NavBar from "./NavBar";
+import LoadingModal from "./LoadingModal";
+import loadingGif from "../assets/loading.gif";
+import errorGif from "../assets/error.gif";
+import { filterAnimeByKey } from "../utils/animeFilters";
 
 const Hero = () => {
   const [rawAnimeList, setRawAnimeList] = useState<AnimeType[]>([]);
@@ -39,7 +43,6 @@ const Hero = () => {
       const newAnimesSorted = animeSortByPopularityOnCenter(newAnimes);
 
       setRawAnimeList((prev) => [...prev, ...newAnimesSorted]);
-      setAnimeList((prev) => [...prev, ...newAnimesSorted]);
 
       if (currentDay < 7) {
         setCurrentDay((day) => day + 1);
@@ -52,15 +55,17 @@ const Hero = () => {
   useEffect(() => {
     if (currentDay >= 7) {
       setIsLoading(false);
+      setRawAnimeList((prev) => filterAnimeByKey(prev));
       setFilterAfterLoad(true);
     }
   }, [currentDay, setFilterAfterLoad, setIsLoading]);
 
   if(error) {
-    console.error(error);
-    return <div className="flex items-center justify-center h-screen w-screen text-white">error...</div>
+    setTimeout(() => window.location.reload(), 5000);
+
+    return <LoadingModal message="Error loading data..." subMessage="Reloading in 5 seconds..." title={"Error Screen"} alt={"Error Screen"} src={errorGif} />
   } else if (isLoading || loading) {
-    return <div className="flex items-center justify-center h-screen w-screen text-white">Loading...</div>;
+    return <LoadingModal message="Loading..." title={"Loading Screen"} alt={"Loading Screen"} src={loadingGif} />
   }
 
   return (
