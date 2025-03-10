@@ -43,6 +43,7 @@ const ConfigModal = ({ setAnimeList, rawAnimeList, onClose, isOpen, initFilter, 
         (Object.keys(filters) as Array<keyof PreferenceType>).forEach((key) => {
             filteredAnime = filters[key](filteredAnime, userPreferences[key] as never);
         });
+
         setAnimeList(filteredAnime);
     }, [rawAnimeList, filters, userPreferences, setAnimeList]);
 
@@ -78,7 +79,7 @@ const ConfigModal = ({ setAnimeList, rawAnimeList, onClose, isOpen, initFilter, 
   return (
     <div className={`fixed top-0 left-0 w-full h-full bg-black/50 z-50 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} transition-all duration-500 ease-in-out`} >
         <section 
-            className={`absolute top-0 left-0 lg:top-1/3 lg:left-1/2 w-full h-full lg:w-1/4 lg:h-auto px-4 py-16 rounded bg-palette-background lg:-translate-x-1/2 lg:-translate-y-1/4 z-100
+            className={`absolute top-0 left-0 lg:top-1/3 lg:left-1/2 w-full h-full lg:w-1/3 xl:w-7/24 lg:h-auto px-4 py-16 rounded bg-palette-background lg:-translate-x-1/2 lg:-translate-y-1/4 z-100
                         ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} transition-all duration-500 ease-in-out`}
         >
             <button
@@ -121,7 +122,7 @@ const ConfigModal = ({ setAnimeList, rawAnimeList, onClose, isOpen, initFilter, 
                     placeholder={defaultPreferences.popularity.toString()}
                     name={"popularity"}
                 />
-                <div className="grid gap-2 grid-cols-1 md:gid-cols-2 lg:grid-cols-5">
+                <div className="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                     {Object.keys(mediaFormatEnum).map((format) => (
                         <CheckBoxInnerLabel
                             key={format}
