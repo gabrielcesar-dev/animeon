@@ -9,20 +9,24 @@ import theme from "../constants/theme";
 import { getTodayEndTime, getTodayStartTime } from "../utils/getDayTime";
 import { animeSortByPopularityOnCenter } from "../utils/animeSort";
 import ConfigModal from "./ConfigModal";
-import NavBar from "./NavBar";
 import LoadingModal from "./LoadingModal";
 import loadingGif from "../assets/loading.gif";
 import errorGif from "../assets/error.gif";
 import { filterAnimeByKey } from "../utils/animeFilters";
 
-const Hero = () => {
+
+interface HeroProps {
+  isSettingsOpen: boolean;
+  setIsSettingsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Hero = ({ isSettingsOpen, setIsSettingsOpen }: HeroProps) => {
   const [rawAnimeList, setRawAnimeList] = useState<AnimeType[]>([]);
   const [animeList, setAnimeList] = useState<AnimeType[]>([]);
   const [startTime, setStartTime] = useState<number>(Math.floor(getTodayStartTime() / 1000));
   const [endTime, setEndTime] = useState<number>(Math.floor(getTodayEndTime() / 1000));
   const [currentDay, setCurrentDay] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [filterAfterLoad, setFilterAfterLoad] = useState<boolean>(false);
 
   const elapsedDay = endTime - startTime + 1;
@@ -61,17 +65,15 @@ const Hero = () => {
   }, [currentDay, setFilterAfterLoad, setIsLoading]);
 
   if(error) {
-    setTimeout(() => window.location.reload(), 5000);
+    setTimeout(() => window.location.reload(), 10000);
 
-    return <LoadingModal message="Error loading data..." subMessage="Reloading in 5 seconds..." title={"Error Screen"} alt={"Error Screen"} src={errorGif} />
+    return <LoadingModal message="Error loading data..." subMessage="Reloading in 10 seconds..." title={"Error Screen"} alt={"Error Screen"} src={errorGif} />
   } else if (isLoading || loading) {
     return <LoadingModal message="Loading..." title={"Loading Screen"} alt={"Loading Screen"} src={loadingGif} />
   }
 
   return (
     <section className="relative h-screen w-screen overflow-hidden">
-      <NavBar isSettingsOpen={isSettingsOpen} setIsSettingsOpen={setIsSettingsOpen} iconsSize={35} />
-
       <CardsCarousel animeList={animeList} />
 
       <GridCanvas
