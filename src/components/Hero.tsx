@@ -18,26 +18,29 @@ import { filterAnimeByKey } from "../utils/animeFilters";
 interface HeroProps {
   isSettingsOpen: boolean;
   setIsSettingsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Hero = ({ isSettingsOpen, setIsSettingsOpen }: HeroProps) => {
+const Hero = ({ isSettingsOpen, setIsSettingsOpen, isLoading, setIsLoading }: HeroProps) => {
   const [rawAnimeList, setRawAnimeList] = useState<AnimeType[]>([]);
   const [animeList, setAnimeList] = useState<AnimeType[]>([]);
   const [startTime, setStartTime] = useState<number>(Math.floor(getTodayStartTime() / 1000));
   const [endTime, setEndTime] = useState<number>(Math.floor(getTodayEndTime() / 1000));
   const [currentDay, setCurrentDay] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [filterAfterLoad, setFilterAfterLoad] = useState<boolean>(false);
 
   const elapsedDay = endTime - startTime + 1;
 
-  const { data, loading, error } = useQuery<AiringTodayData>(GET_AIRING_TODAY, {
+  const { data, error } = useQuery<AiringTodayData>(GET_AIRING_TODAY, {
     variables: { start: startTime, end: endTime },
     skip: currentDay >= 7,
   });
 
   useEffect(() => {
     if (data) {
+      setIsLoading(false);
+
       const newAnimes = data.Page.airingSchedules.map((schedule) => ({
         ...schedule.media,
         airingAtDay: startTime,
@@ -46,7 +49,8 @@ const Hero = ({ isSettingsOpen, setIsSettingsOpen }: HeroProps) => {
 
       const newAnimesSorted = animeSortByPopularityOnCenter(newAnimes);
 
-      setRawAnimeList((prev) => [...prev, ...newAnimesSorted]);
+      setRawAnimeList((prev) => filterAnimeByKey([...prev, ...newAnimesSorted]));
+      setFilterAfterLoad(true);
 
       if (currentDay < 7) {
         setCurrentDay((day) => day + 1);
@@ -56,19 +60,11 @@ const Hero = ({ isSettingsOpen, setIsSettingsOpen }: HeroProps) => {
     }
   }, [data]);
 
-  useEffect(() => {
-    if (currentDay >= 7) {
-      setIsLoading(false);
-      setRawAnimeList((prev) => filterAnimeByKey(prev));
-      setFilterAfterLoad(true);
-    }
-  }, [currentDay, setFilterAfterLoad, setIsLoading]);
-
   if(error) {
     setTimeout(() => window.location.reload(), 10000);
 
     return <LoadingModal message="Error loading data..." subMessage="Reloading in 10 seconds..." title={"Error Screen"} alt={"Error Screen"} src={errorGif} />
-  } else if (isLoading || loading) {
+  } else if (isLoading) {
     return <LoadingModal message="Loading..." title={"Loading Screen"} alt={"Loading Screen"} src={loadingGif} />
   }
 
