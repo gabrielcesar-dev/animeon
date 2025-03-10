@@ -98,7 +98,7 @@ const GridCanvas = ({ backgroundColor, AccentColor, animeList }: GridCanvasProps
         const observer = Observer.create({
             target: "#card-carousel",
             type: "pointer,touch,wheel",
-            wheelSpeed: -0.1,
+            wheelSpeed: -0.15,
 
             onChange: (self) => {
                 const delta = Math.abs(self.deltaX) > Math.abs(self.deltaY) ? self.deltaX : self.deltaY;
@@ -106,7 +106,7 @@ const GridCanvas = ({ backgroundColor, AccentColor, animeList }: GridCanvasProps
                 loop.timeScale(-delta);
                 slow.invalidate().restart();
 
-                const offset = (prevOffset.current + -(delta * (1.2))) % 30;
+                const offset = -(prevOffset.current + -(delta * (1.2))) % 30;
                 drawGrid(offset);
                 prevOffset.current += -delta;
             },
@@ -116,7 +116,7 @@ const GridCanvas = ({ backgroundColor, AccentColor, animeList }: GridCanvasProps
             loop.kill();
             slow.kill();
         };
-    }, { dependencies: [animeList, drawGrid] });
+    }, { dependencies: [drawGrid, prevOffset, animeList], revertOnUpdate: true });
 
     return (
         <canvas 
