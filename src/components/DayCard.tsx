@@ -22,7 +22,7 @@ const DayCard = ({ time }: DayCardProps) => {
   });
 
   return (
-    <div className="absolute -top-20 left-1/2 z-20 flex w-1/2 translate-x-[-50%] items-center justify-center rounded bg-palette-accent py-4 duration-75 ease-in-out outline-none focus:outline-none">
+    <div className="absolute -top-20 left-1/2 z-20 flex min-w-1/2 translate-x-[-50%] items-center justify-center rounded bg-palette-accent px-2 py-4 duration-75 ease-in-out outline-none focus:outline-none">
       <time
         className="font-poppins text-2xl font-light text-white"
         dateTime={dateFormatted}
