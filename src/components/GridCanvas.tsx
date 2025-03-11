@@ -30,7 +30,12 @@ const GridCanvas = ({
 
   const drawGrid = useCallback(
     (offset: number = 0) => {
-      if (!ctx) return;
+      if (!ctx || !canvasRef.current) return;
+
+      const size = {
+        width: canvasRef.current.width,
+        height: canvasRef.current.height,
+      };
 
       ctx.clearRect(0, 0, size.width, size.height);
 
@@ -56,7 +61,7 @@ const GridCanvas = ({
         }
       }
     },
-    [AccentColor, backgroundColor, ctx, size.height, size.width]
+    [AccentColor, backgroundColor, ctx, canvasRef]
   );
 
   useEffect(() => {
@@ -74,7 +79,7 @@ const GridCanvas = ({
   }, [ratio, ctx]);
 
   useEffect(() => {
-    drawGrid();
+    drawGrid(0);
   }, [drawGrid]);
 
   useEffect(() => {
@@ -84,11 +89,13 @@ const GridCanvas = ({
         height: window.innerHeight,
       });
       setRatio(window.devicePixelRatio || 1);
+
+      requestAnimationFrame(() => drawGrid(prevOffset.current % 30));
     }
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [drawGrid, ctx]);
 
   useGSAP(
     () => {
@@ -134,7 +141,7 @@ const GridCanvas = ({
         slow.kill();
       };
     },
-    { dependencies: [drawGrid, prevOffset, animeList], revertOnUpdate: true }
+    { dependencies: [drawGrid, animeList], revertOnUpdate: true }
   );
 
   return (
