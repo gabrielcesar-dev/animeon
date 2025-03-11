@@ -1,6 +1,8 @@
 import { AnimeType } from "../@types/AnimeType";
 
-export const animeSortByPopularityOnCenter = (anime: AnimeType[]): AnimeType[] => {
+export const animeSortByPopularityOnCenter = (
+  anime: AnimeType[]
+): AnimeType[] => {
   const sorted = [...anime].sort((a, b) => b.popularity - a.popularity);
 
   const sortedAnime: AnimeType[] = Array(sorted.length);
@@ -22,4 +24,3 @@ export const animeSortByPopularityOnCenter = (anime: AnimeType[]): AnimeType[] =
 
   return sortedAnime;
 };
-

@@ -3,17 +3,16 @@ import { GET_AIRING_TODAY } from "../graphql/airingToday";
 import { useEffect, useState } from "react";
 import { AiringTodayData } from "../@types/AiringTodayData";
 import { AnimeType } from "../@types/AnimeType";
-import CardsCarousel from "./CardsCarousel";
-import GridCanvas from "./GridCanvas";
+import CardsCarousel from "../components/CardsCarousel";
+import GridCanvas from "../components/GridCanvas";
 import theme from "../constants/theme";
 import { getTodayEndTime, getTodayStartTime } from "../utils/getDayTime";
 import { animeSortByPopularityOnCenter } from "../utils/animeSort";
-import ConfigModal from "./ConfigModal";
-import LoadingModal from "./LoadingModal";
+import ConfigModal from "../components/ConfigModal";
+import LoadingModal from "../components/LoadingModal";
 import loadingGif from "../assets/loading.gif";
 import errorGif from "../assets/error.gif";
 import { filterAnimeByKey } from "../utils/animeFilters";
-
 
 interface HeroProps {
   isSettingsOpen: boolean;
@@ -22,11 +21,20 @@ interface HeroProps {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Hero = ({ isSettingsOpen, setIsSettingsOpen, isLoading, setIsLoading }: HeroProps) => {
+const Hero = ({
+  isSettingsOpen,
+  setIsSettingsOpen,
+  isLoading,
+  setIsLoading,
+}: HeroProps) => {
   const [rawAnimeList, setRawAnimeList] = useState<AnimeType[]>([]);
   const [animeList, setAnimeList] = useState<AnimeType[]>([]);
-  const [startTime, setStartTime] = useState<number>(Math.floor(getTodayStartTime() / 1000));
-  const [endTime, setEndTime] = useState<number>(Math.floor(getTodayEndTime() / 1000));
+  const [startTime, setStartTime] = useState<number>(
+    Math.floor(getTodayStartTime() / 1000)
+  );
+  const [endTime, setEndTime] = useState<number>(
+    Math.floor(getTodayEndTime() / 1000)
+  );
   const [currentDay, setCurrentDay] = useState<number>(0);
   const [filterAfterLoad, setFilterAfterLoad] = useState<boolean>(false);
 
@@ -49,7 +57,9 @@ const Hero = ({ isSettingsOpen, setIsSettingsOpen, isLoading, setIsLoading }: He
 
       const newAnimesSorted = animeSortByPopularityOnCenter(newAnimes);
 
-      setRawAnimeList((prev) => filterAnimeByKey([...prev, ...newAnimesSorted]));
+      setRawAnimeList((prev) =>
+        filterAnimeByKey([...prev, ...newAnimesSorted])
+      );
       setFilterAfterLoad(true);
 
       if (currentDay < 7) {
@@ -60,12 +70,27 @@ const Hero = ({ isSettingsOpen, setIsSettingsOpen, isLoading, setIsLoading }: He
     }
   }, [data]);
 
-  if(error) {
+  if (error) {
     setTimeout(() => window.location.reload(), 10000);
 
-    return <LoadingModal message="Error loading data..." subMessage="Reloading in 10 seconds..." title={"Error Screen"} alt={"Error Screen"} src={errorGif} />
+    return (
+      <LoadingModal
+        message="Error loading data..."
+        subMessage="Reloading in 10 seconds..."
+        title={"Error Screen"}
+        alt={"Error Screen"}
+        src={errorGif}
+      />
+    );
   } else if (isLoading) {
-    return <LoadingModal message="Loading..." title={"Loading Screen"} alt={"Loading Screen"} src={loadingGif} />
+    return (
+      <LoadingModal
+        message="Loading..."
+        title={"Loading Screen"}
+        alt={"Loading Screen"}
+        src={loadingGif}
+      />
+    );
   }
 
   return (
@@ -77,11 +102,11 @@ const Hero = ({ isSettingsOpen, setIsSettingsOpen, isLoading, setIsLoading }: He
         AccentColor={theme.colors.accentColor}
         animeList={animeList}
       />
-      
-      <ConfigModal 
-        setAnimeList={setAnimeList} 
+
+      <ConfigModal
+        setAnimeList={setAnimeList}
         rawAnimeList={rawAnimeList}
-        onClose={() => setIsSettingsOpen(false)} 
+        onClose={() => setIsSettingsOpen(false)}
         isOpen={isSettingsOpen}
         initFilter={filterAfterLoad}
         setInitFilter={setFilterAfterLoad}

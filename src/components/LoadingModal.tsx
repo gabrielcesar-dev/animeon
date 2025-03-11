@@ -1,21 +1,22 @@
 interface LoadingModalProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-    message: string;
-    subMessage?: string;
+  message: string;
+  subMessage?: string;
 }
 
-const LoadingModal = ({ message, subMessage, ...props}: LoadingModalProps) => {
+const LoadingModal = ({ message, subMessage, ...props }: LoadingModalProps) => {
   return (
-    <div className="relative flex items-center h-screen w-screen flex-col gap-0 bg-palette-background">
-        <img 
-            className="object-cover h-1/4"
-            {...props}
-        />
-        <div>
-          <p className="text-palette-accent text-4xl font-Bigger font-black">{ message }</p>
-          <p className="text-gray-500 text-xl font-Bigger font-light text-center">{ subMessage }</p>
-        </div>
+    <div className="relative flex h-screen w-screen flex-col items-center gap-0 bg-palette-background">
+      <img className="h-1/4 object-cover" alt="Loading image" {...props} />
+      <div>
+        <p className="font-Bigger text-4xl font-black text-palette-accent">
+          {message}
+        </p>
+        <p className="font-Bigger text-center text-xl font-light text-gray-500">
+          {subMessage}
+        </p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default LoadingModal;

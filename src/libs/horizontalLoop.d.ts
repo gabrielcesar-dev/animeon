@@ -1,6 +1,5 @@
 import gsap from "gsap";
 
-
 type ItemsType = string | Element[] | NodeListOf<Element>;
 
 interface HorizontalLoopOptions {

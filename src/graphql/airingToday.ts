@@ -19,7 +19,7 @@ export const GET_AIRING_TODAY = gql`
           id
           format
         }
-      airingAt
+        airingAt
       }
     }
   }

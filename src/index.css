@@ -3,30 +3,30 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'Bigger';
-    src: url('/fonts/Bigger-Display.woff2') format('woff2');
+  font-family: "Bigger";
+  src: url("/fonts/Bigger-Display.woff2") format("woff2");
 }
 
 @theme {
-    /* Font Family */
-    --font-poppins: 'Poppins', sans-serif;
+  /* Font Family */
+  --font-poppins: "Poppins", sans-serif;
 
-    /* colors */
-    --color-palette-background: var(--color-slate-900);
-    --color-palette-accent: var(--color-indigo-500);
-    --color-palette-accent-hover: var(--color-indigo-800);
-    --color-palette-accent-light: var(--color-indigo-300);
+  /* colors */
+  --color-palette-background: var(--color-slate-900);
+  --color-palette-accent: var(--color-indigo-500);
+  --color-palette-accent-hover: var(--color-indigo-800);
+  --color-palette-accent-light: var(--color-indigo-300);
 }
 
 @layer base {
-    @font-face {
-        font-family: 'general';
-        src: url('/fonts/general.woff2') format('woff2');
-    }
+  @font-face {
+    font-family: "general";
+    src: url("/fonts/general.woff2") format("woff2");
+  }
 }
 
 img {
-    -webkit-user-drag: none;
+  -webkit-user-drag: none;
 }
 
 /* fix ios input keyboard
@@ -36,44 +36,43 @@ img {
 html,
 body,
 #root {
-    position: relative;
+  position: relative;
 
-    overscroll-behavior: none;
+  overscroll-behavior: none;
 
-    height: 100%;
-    min-height: 100dvh;
-    max-height: 100dvh;
+  height: 100%;
+  min-height: 100dvh;
+  max-height: 100dvh;
 
-    font-family: 'Poppins' sans-serif;
-    width: 100dvw;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+  font-family: "Poppins" sans-serif;
+  width: 100dvw;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 
-    @media (min-device-width: 576px) {
-        overflow: hidden;
-    }
+  @media (min-device-width: 576px) {
+    overflow: hidden;
+  }
 }
 
-
 * {
-    scrollbar-color: var(--color-palette-background) transparent;
-    scrollbar-width: thin;
+  scrollbar-color: var(--color-palette-background) transparent;
+  scrollbar-width: thin;
 
-    ::-webkit-scrollbar {
-        width: 0.75em;
-        height: 0.75em;
-    }
+  ::-webkit-scrollbar {
+    width: 0.75em;
+    height: 0.75em;
+  }
 
-    ::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-    }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  }
 
-    :hover::-webkit-scrollbar-thumb {
-        border: 3px solid var(--color-palette-background) transparent;
-        background-clip: content-box;
-    }
+  :hover::-webkit-scrollbar-thumb {
+    border: 3px solid var(--color-palette-background) transparent;
+    background-clip: content-box;
+  }
 
-    ::-webkit-scrollbar-track {
-        background-color: var(--color-palette-background) transparent;
-    }
+  ::-webkit-scrollbar-track {
+    background-color: var(--color-palette-background) transparent;
+  }
 }
