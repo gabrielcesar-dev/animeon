@@ -7,11 +7,9 @@ import { client } from "./config/apollo.ts";
 import LenisProvider from "./components/LenisProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <ApolloProvider client={client}>
-      <LenisProvider>
-        <App />
-      </LenisProvider>
-    </ApolloProvider>
-  </StrictMode>
+  <ApolloProvider client={client}>
+    <LenisProvider>
+      <App />
+    </LenisProvider>
+  </ApolloProvider>
 );
