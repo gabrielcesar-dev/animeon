@@ -7,7 +7,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-slate-900">
+    <main className="relative min-h-screen overflow-x-hidden bg-palette-background">
       <NavBar
         setIsSettingsOpen={setIsSettingsOpen}
         isLoading={isLoading}

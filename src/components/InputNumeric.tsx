@@ -23,18 +23,12 @@ const InputNumeric = ({
         type="text"
         inputMode="numeric"
         pattern="[0-9]*"
-        className="h-6 w-18 max-w-1/4 overflow-hidden rounded-md border-2 bg-palette-background px-2 py-3 text-sm leading-none text-ellipsis whitespace-nowrap text-white transition-all duration-500 ease-in-out outline-none hover:border-palette-accent focus:border-palette-accent focus:shadow-sm focus:shadow-palette-accent"
+        className={`h-6 w-18 max-w-1/4 overflow-hidden rounded-md border-2 shadow-sm ${isNumber(value) && value != defaultValue ? "border-palette-primary hover:border-palette-primary-dark focus:shadow-palette-primary-dark" : "border-palette-inactive hover:border-palette-inactive-dark focus:shadow-palette-inactive-dark"} truncate bg-palette-background-modal px-2 py-3 text-sm text-palette-text transition-all duration-500 ease-in-out outline-none`}
         {...props}
-        style={{
-          borderColor:
-            isNumber(value) && value != defaultValue
-              ? "var(--color-palette-accent)"
-              : "",
-        }}
         value={value}
       />
       <label
-        className="overflow-hidden text-sm leading-none text-ellipsis whitespace-nowrap text-white lg:text-lg"
+        className="truncate text-sm text-palette-text lg:text-lg"
         htmlFor={props.name}
       >
         {label}

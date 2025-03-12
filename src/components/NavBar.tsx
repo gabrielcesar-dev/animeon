@@ -15,9 +15,9 @@ const NavBar = ({ setIsSettingsOpen, iconsSize, isLoading }: NavBarProps) => {
   if (isLoading) return null;
 
   return (
-    <nav className="absolute bottom-1 z-20 flex w-full items-center justify-center gap-x-20 lg:bottom-full lg:translate-y-full">
+    <nav className="absolute top-full z-20 flex w-full -translate-y-[110%] items-center justify-center gap-x-20 lg:top-1.5 lg:translate-y-0">
       <a
-        className="flex cursor-pointer items-center justify-center rounded-lg bg-transparent p-0 text-gray-600 hover:scale-110 hover:text-palette-accent-hover"
+        className="flex cursor-pointer items-center justify-center rounded-lg bg-transparent p-0 text-palette-inactive hover:scale-110 hover:text-palette-primary"
         href={import.meta.env.VITE_GITHUB_URL as string}
         target="_blank"
         rel="noopener noreferrer"
@@ -38,7 +38,7 @@ const NavBar = ({ setIsSettingsOpen, iconsSize, isLoading }: NavBarProps) => {
       </a>
 
       <button
-        className={`flex cursor-pointer items-center justify-center bg-transparent p-0 text-gray-600 transition-all duration-500 ease-in-out hover:scale-110 hover:rotate-180 hover:text-palette-accent-hover hover:duration-700`}
+        className={`flex cursor-pointer items-center justify-center bg-transparent p-0 text-palette-inactive transition-all duration-500 ease-in-out hover:scale-110 hover:rotate-180 hover:text-palette-primary hover:duration-700`}
         onClick={() => setIsSettingsOpen(true)}
       >
         <IoMdSettings size={iconsSize} />

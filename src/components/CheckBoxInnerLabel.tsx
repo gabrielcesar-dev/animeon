@@ -11,7 +11,7 @@ const CheckBoxInnerLabel = ({
   return (
     <div className="group">
       <div
-        className={`relative flex h-12 cursor-pointer items-center justify-center rounded border-2 p-2 transition-all duration-500 ease-in-out group-focus:shadow-sm ${checked ? "border-palette-accent" : "border-white"} ${checked ? "group-hover:border-palette-accent-hover" : "group-hover:border-gray-300"} ${checked ? "group-focus:shadow-palette-accent" : "group-focus:shadow-white"}`}
+        className={`relative flex h-12 cursor-pointer items-center justify-center rounded border-2 p-2 shadow-sm transition-all duration-500 ease-in-out ${checked ? "border-palette-secondary shadow-palette-secondary group-hover:border-palette-secondary-dark group-hover:shadow-palette-secondary-dark" : "border-palette-inactive group-hover:border-palette-inactive-dark"}`}
       >
         <input
           type="checkbox"
@@ -20,7 +20,7 @@ const CheckBoxInnerLabel = ({
         />
         <label
           htmlFor={props.name}
-          className="cursor-pointer overflow-hidden text-center text-sm leading-none text-ellipsis whitespace-nowrap text-white"
+          className="cursor-pointer overflow-hidden text-center text-sm text-ellipsis whitespace-nowrap text-white"
         >
           {label}
         </label>

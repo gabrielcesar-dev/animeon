@@ -75,7 +75,7 @@ const Hero = ({
 
     return (
       <LoadingModal
-        message="Error loading data..."
+        message="Error loading data"
         subMessage="Reloading in 10 seconds..."
         title={"Error Screen"}
         alt={"Error Screen"}
@@ -98,8 +98,8 @@ const Hero = ({
       <CardsCarousel animeList={animeList} />
 
       <GridCanvas
-        backgroundColor={theme.colors.backgroundColor}
-        AccentColor={theme.colors.accentColor}
+        backgroundColor={theme.colors.gridBackground}
+        AccentColor={theme.colors.gridDots}
         animeList={animeList}
       />
 

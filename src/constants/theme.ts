@@ -1,7 +1,7 @@
 const theme = {
   colors: {
-    backgroundColor: "oklch(0.208 0.042 265.755)",
-    accentColor: "#615FFF",
+    gridBackground: "#000",
+    gridDots: "#3DBFD9",
   },
   carouselGap: 100,
 };

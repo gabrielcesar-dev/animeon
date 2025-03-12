@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AnimeType } from "../@types/AnimeType";
 import { mediaFormatEnum } from "../@types/AiringTodayData";
-import { IoClose } from "react-icons/io5";
 import ToggleSwitch from "./ToggleSwitch";
 import InputNumeric from "./InputNumeric";
 import CheckBoxInnerLabel from "./CheckBoxInnerLabel";
@@ -14,6 +13,7 @@ import {
   filterAnimeByPopularity,
 } from "../utils/animeFilters";
 import { USER_PREFERENCES_KEY } from "../constants/localStorageKeys";
+import IoCloseGradient from "./IoCloseGradient";
 
 interface ConfigModalProps {
   setAnimeList: React.Dispatch<React.SetStateAction<AnimeType[]>>;
@@ -118,21 +118,24 @@ const ConfigModal = ({
       className={`fixed top-0 left-0 z-50 h-full w-full bg-black/50 ${isOpen ? "visible opacity-100" : "invisible opacity-0"} transition-all duration-500 ease-in-out`}
     >
       <section
-        className={`absolute top-0 left-0 z-100 h-full w-full rounded bg-palette-background px-4 py-16 lg:top-1/3 lg:left-1/2 lg:h-auto lg:w-1/3 lg:-translate-x-1/2 lg:-translate-y-1/4 xl:w-7/24 ${isOpen ? "visible opacity-100" : "invisible opacity-0"} transition-all duration-500 ease-in-out`}
+        className={`absolute top-0 left-0 z-100 h-full w-full rounded bg-palette-background-modal px-4 py-16 lg:top-1/3 lg:left-1/2 lg:h-auto lg:w-1/3 lg:-translate-x-1/2 lg:-translate-y-1/4 xl:w-7/24 ${isOpen ? "visible opacity-100" : "invisible opacity-0"} shadow-md shadow-palette-shadow transition-all duration-500 ease-in-out`}
       >
         <button
-          className="absolute top-2 right-2 flex cursor-pointer items-center justify-center text-white hover:text-gray-300"
+          className="absolute top-2 right-2 flex cursor-pointer items-center justify-center transition-all ease-in-out hover:scale-110"
           onClick={async () => {
             applyFilters();
             onClose();
           }}
         >
-          <IoClose size={30} />
+          <IoCloseGradient
+            startColor="var(--color-palette-primary)"
+            endColor="var(--color-palette-secondary)"
+          />
         </button>
-        <h2 className="absolute top-2 left-2 font-poppins text-lg font-semibold text-white lg:text-2xl">
+        <h2 className="absolute top-2 left-2 bg-gradient-to-r from-palette-primary to-palette-secondary bg-clip-text font-poppins text-lg font-semibold text-transparent lg:text-2xl">
           Settings
         </h2>
-        <hr className="absolute top-12 left-[2.5%] w-[95%] text-white" />
+        <hr className="absolute top-12 left-0 h-0.5 w-full bg-palette-border" />
 
         <form className="mt-2 flex flex-col gap-4 lg:mb-10">
           <ToggleSwitch

@@ -12,17 +12,17 @@
   --font-poppins: "Poppins", sans-serif;
 
   /* colors */
-  --color-palette-background: var(--color-slate-900);
-  --color-palette-accent: var(--color-indigo-500);
-  --color-palette-accent-hover: var(--color-indigo-800);
-  --color-palette-accent-light: var(--color-indigo-300);
-}
-
-@layer base {
-  @font-face {
-    font-family: "general";
-    src: url("/fonts/general.woff2") format("woff2");
-  }
+  --color-palette-background: #000;
+  --color-palette-background-modal: #222222;
+  --color-palette-text: #fff;
+  --color-palette-shadow: #333333;
+  --color-palette-border: #333333;
+  --color-palette-primary: #EE3C88;
+  --color-palette-primary-dark: #E61E7A;
+  --color-palette-secondary: #3DBFD9;
+  --color-palette-secondary-dark: #2FA9C6;
+  --color-palette-inactive: #D3D3D3;
+  --color-palette-inactive-dark: #BEBEBE;
 }
 
 img {

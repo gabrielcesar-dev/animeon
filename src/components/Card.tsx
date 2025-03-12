@@ -52,10 +52,10 @@ const Card = ({
       data-format={format}
       data-adult={isAdult}
       data-airing-at={airingAt}
-      className="card-carousel__item relative flex h-[600px] w-[344px] flex-shrink-0 flex-grow basis-auto flex-col gap-0 bg-slate-950 p-[6px] will-change-transform"
+      className="card-carousel__item relative flex h-[600px] w-[344px] flex-shrink-0 flex-grow basis-auto flex-col gap-0 rounded-xs bg-palette-background p-[6px] will-change-transform"
     >
       <a
-        className="flex-1 overflow-hidden"
+        className={`relative flex-1 overflow-hidden after:absolute after:top-1/2 after:z-1 after:block after:h-1/2 after:w-full after:bg-gradient-to-t after:from-black/85 after:to-transparent after:to-40% after:content-[""]`}
         href={url}
         target="blank"
         rel="noopener noreferrer"
@@ -63,15 +63,15 @@ const Card = ({
         <img className="size-full object-cover" {...props} />
       </a>
 
-      <div className="bg-slate-950">
-        <p className="truncate px-1 py-0 text-center font-poppins text-sm text-white">
+      <div>
+        <p className="truncate px-1 py-0 text-center font-poppins text-sm text-palette-text">
           {props.title}
         </p>
       </div>
 
-      <div className="py-auto absolute right-4 bottom-8 rounded-md bg-palette-accent px-2">
+      <div className="py-auto absolute right-4 bottom-8 z-2 rounded-md bg-palette-secondary px-2">
         <time
-          className="font-poppins text-sm font-medium text-white"
+          className="font-poppins text-sm font-medium text-palette-text"
           dateTime={airingAtDate}
           title={airingAtDate}
         >
