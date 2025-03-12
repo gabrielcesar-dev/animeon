@@ -17,7 +17,7 @@ const NavBar = ({ setIsSettingsOpen, iconsSize, isLoading }: NavBarProps) => {
   return (
     <nav className="absolute top-full z-20 flex w-full -translate-y-[110%] items-center justify-center gap-x-20 lg:top-1.5 lg:translate-y-0">
       <a
-        className="flex cursor-pointer items-center justify-center rounded-lg bg-transparent p-0 text-palette-inactive hover:scale-110 hover:text-palette-primary"
+        className="flex cursor-pointer items-center justify-center rounded-lg bg-transparent p-0 text-palette-inactive hover:scale-110 hover:text-palette-secondary"
         href={import.meta.env.VITE_GITHUB_URL as string}
         target="_blank"
         rel="noopener noreferrer"
